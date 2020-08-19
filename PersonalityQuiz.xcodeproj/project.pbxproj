@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		9FADD00A24E87E6A003A07F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FADD00924E87E6A003A07F6 /* Assets.xcassets */; };
 		9FADD00D24E87E6A003A07F6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FADD00C24E87E6A003A07F6 /* Preview Assets.xcassets */; };
 		9FADD01024E87E6A003A07F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FADD00E24E87E6A003A07F6 /* LaunchScreen.storyboard */; };
+		9FADD01824E87F6D003A07F6 /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FADD01724E87F6D003A07F6 /* IntroductionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9FADD00C24E87E6A003A07F6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9FADD00F24E87E6A003A07F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9FADD01124E87E6A003A07F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FADD01724E87F6D003A07F6 /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				9FADD00324E87E69003A07F6 /* AppDelegate.swift */,
 				9FADD00524E87E69003A07F6 /* SceneDelegate.swift */,
 				9FADD00724E87E69003A07F6 /* ContentView.swift */,
+				9FADD01724E87F6D003A07F6 /* IntroductionView.swift */,
 				9FADD00924E87E6A003A07F6 /* Assets.xcassets */,
 				9FADD00E24E87E6A003A07F6 /* LaunchScreen.storyboard */,
 				9FADD01124E87E6A003A07F6 /* Info.plist */,
@@ -111,7 +114,7 @@
 				};
 			};
 			buildConfigurationList = 9FADCFFB24E87E69003A07F6 /* Build configuration list for PBXProject "PersonalityQuiz" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.4";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -148,6 +151,7 @@
 			files = (
 				9FADD00424E87E69003A07F6 /* AppDelegate.swift in Sources */,
 				9FADD00624E87E69003A07F6 /* SceneDelegate.swift in Sources */,
+				9FADD01824E87F6D003A07F6 /* IntroductionView.swift in Sources */,
 				9FADD00824E87E69003A07F6 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
