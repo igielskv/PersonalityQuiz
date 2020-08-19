@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F41BC8424ED8C990072B5C4 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41BC8324ED8C990072B5C4 /* ResultsView.swift */; };
+		9F41BC8624ED8CFC0072B5C4 /* QuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41BC8524ED8CFC0072B5C4 /* QuestionsView.swift */; };
 		9FADD00424E87E69003A07F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FADD00324E87E69003A07F6 /* AppDelegate.swift */; };
 		9FADD00624E87E69003A07F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FADD00524E87E69003A07F6 /* SceneDelegate.swift */; };
 		9FADD00824E87E69003A07F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FADD00724E87E69003A07F6 /* ContentView.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F41BC8324ED8C990072B5C4 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		9F41BC8524ED8CFC0072B5C4 /* QuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsView.swift; sourceTree = "<group>"; };
 		9FADD00024E87E69003A07F6 /* PersonalityQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersonalityQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FADD00324E87E69003A07F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FADD00524E87E69003A07F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 				9FADD00524E87E69003A07F6 /* SceneDelegate.swift */,
 				9FADD00724E87E69003A07F6 /* ContentView.swift */,
 				9FADD01724E87F6D003A07F6 /* IntroductionView.swift */,
+				9F41BC8524ED8CFC0072B5C4 /* QuestionsView.swift */,
+				9F41BC8324ED8C990072B5C4 /* ResultsView.swift */,
 				9FADD00924E87E6A003A07F6 /* Assets.xcassets */,
 				9FADD00E24E87E6A003A07F6 /* LaunchScreen.storyboard */,
 				9FADD01124E87E6A003A07F6 /* Info.plist */,
@@ -151,7 +157,9 @@
 			files = (
 				9FADD00424E87E69003A07F6 /* AppDelegate.swift in Sources */,
 				9FADD00624E87E69003A07F6 /* SceneDelegate.swift in Sources */,
+				9F41BC8624ED8CFC0072B5C4 /* QuestionsView.swift in Sources */,
 				9FADD01824E87F6D003A07F6 /* IntroductionView.swift in Sources */,
+				9F41BC8424ED8C990072B5C4 /* ResultsView.swift in Sources */,
 				9FADD00824E87E69003A07F6 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

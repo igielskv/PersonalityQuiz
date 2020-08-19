@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct IntroductionView: View {
+    
+    @State private var quizHasStarted: Bool = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -24,9 +27,12 @@ struct IntroductionView: View {
             Text("Which Animal Are You?")
                 .font(.custom("Georgia", size: 30.0))
             
-            Button(action: {}) {
+            Button(action: { self.quizHasStarted = true }) {
                 Text("Begin Personality Quiz")
                     .font(.system(size: 15.0))
+            }
+            .sheet(isPresented: $quizHasStarted) {
+                QuestionsView()
             }
             
             Spacer()
