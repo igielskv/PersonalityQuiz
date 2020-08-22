@@ -15,9 +15,11 @@ class QuizViewModel: ObservableObject {
         self.questions = questions
     }
     
-    var questionIndex = 2
+    @Published var questionIndex = 0
     
-    var answersChosen: [Answer] = []
+    @Published var answersChosen: [Answer] = []
+    
+    @Published var isFinished: Bool = false
     
     var currentQuestion: Question {
         questions[questionIndex]
@@ -32,6 +34,11 @@ class QuizViewModel: ObservableObject {
     }
     
     func nextQuestion() {
-        
+        if questionIndex < questions.count - 1 {
+            questionIndex += 1
+        } else {
+            isFinished = true
+        }
+        print(questionIndex, isFinished, answersChosen)
     }
 }

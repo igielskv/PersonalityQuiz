@@ -35,6 +35,10 @@ struct QuestionsView: View {
                 Spacer()
                 
                 // Todo: Implemet ProgressView using UIKit, it seems to be missing in SwiftUI
+                
+                NavigationLink(destination: ResultsView(), isActive: $quiz.isFinished) {
+                    EmptyView()
+                }
             }
             .padding(20.0)
             .navigationBarTitle("Question #\(quiz.questionIndex + 1)", displayMode: .inline)
