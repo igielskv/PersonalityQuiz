@@ -36,6 +36,8 @@ struct QuestionsView: View {
                 
                 // Todo: Implemet ProgressView using UIKit, it seems to be missing in SwiftUI
                 
+                ProgressView(progress: quiz.totalProgress)
+                
                 NavigationLink(destination: ResultsView(quiz: quiz), isActive: $quiz.isFinished) {
                     EmptyView()
                 }
@@ -49,6 +51,18 @@ struct QuestionsView: View {
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
         QuestionsView(quiz: QuizViewModel(questions: questionsData))
+    }
+}
+
+struct ProgressView: UIViewRepresentable {
+    var progress: Float
+    
+    func makeUIView(context: Context) -> UIProgressView {
+        return UIProgressView()
+    }
+    
+    func updateUIView(_ uiView: UIProgressView, context: Context) {
+        uiView.progress = progress
     }
 }
 

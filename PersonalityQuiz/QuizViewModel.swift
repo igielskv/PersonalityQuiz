@@ -31,6 +31,10 @@ class QuizViewModel: ObservableObject {
         currentQuestion.answers
     }
     
+    var totalProgress: Float {
+        Float(questionIndex) / Float(questions.count)
+    }
+    
     var resultAnswer: String!
     var resultDefinition: String!
     
