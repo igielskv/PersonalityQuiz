@@ -12,8 +12,6 @@ struct QuestionsView: View {
     
     @ObservedObject var quiz: QuizViewModel = QuizViewModel(questions: questionsData)
     
-    @State var toggleStates: [Bool] = Array(repeating: false, count: 4)
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -27,7 +25,7 @@ struct QuestionsView: View {
                 }
                 
                 if quiz.currentQuestion.type == .multiple {
-                    multipleAnswerStack(answers: quiz.currentAnswers)
+                    MultipleAnswerStack(quiz: quiz)
                 }
                 
                 if quiz.currentQuestion.type == .ranged {
@@ -40,32 +38,6 @@ struct QuestionsView: View {
             }
             .padding(20.0)
             .navigationBarTitle("Question #\(quiz.questionIndex + 1)", displayMode: .inline)
-        }
-    }
-    
-    
-    
-    
-    
-    func multipleAnswerStack(answers: [Answer]) -> some View {
-        VStack(spacing: 20.0) {
-            ForEach(0 ..< answers.count) { index in
-                Toggle(isOn: self.$toggleStates[index]) {
-                    Text(answers[index].text)
-                }
-            }
-            
-            Button(action: { self.multipleAnswerButtonPressed(answers: answers)}) {
-                Text("Submit Answer")
-            }
-        }
-    }
-    
-    func multipleAnswerButtonPressed(answers: [Answer]) {
-        for index in 0 ..< answers.count {
-            if toggleStates[index] {
-                quiz.answersChosen.append(answers[index])
-            }
         }
     }
 }
@@ -92,6 +64,34 @@ struct SingleAnswerStack: View {
     func singleAnswerButtonPressed(answer: Answer) {
         quiz.appendAnswer(answer: answer)
         quiz.nextQuestion()
+    }
+}
+
+struct MultipleAnswerStack: View {
+    var quiz: QuizViewModel
+    
+    @State var toggleStates: [Bool] = Array(repeating: false, count: 4)
+    
+    var body: some View {
+        VStack(spacing: 20.0) {
+            ForEach(0 ..< quiz.currentAnswers.count) { index in
+                Toggle(isOn: self.$toggleStates[index]) {
+                    Text(self.quiz.currentAnswers[index].text)
+                }
+            }
+            
+            Button(action: { self.multipleAnswerButtonPressed()}) {
+                Text("Submit Answer")
+            }
+        }
+    }
+    
+    func multipleAnswerButtonPressed() {
+        for index in 0 ..< quiz.currentAnswers.count {
+            if toggleStates[index] {
+                quiz.answersChosen.append(quiz.currentAnswers[index])
+            }
+        }
     }
 }
 

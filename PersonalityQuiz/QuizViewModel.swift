@@ -15,7 +15,7 @@ class QuizViewModel: ObservableObject {
         self.questions = questions
     }
     
-    var questionIndex = 0
+    var questionIndex = 2
     
     var answersChosen: [Answer] = []
     
