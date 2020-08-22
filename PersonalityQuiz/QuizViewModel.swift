@@ -19,6 +19,8 @@ class QuizViewModel: ObservableObject {
     
     @Published var answersChosen: [Answer] = []
     
+    @Published var hasStarted: Bool = false
+    
     @Published var isFinished: Bool = false
     
     var currentQuestion: Question {
@@ -29,6 +31,9 @@ class QuizViewModel: ObservableObject {
         currentQuestion.answers
     }
     
+    var resultAnswer: String!
+    var resultDefinition: String!
+    
     func appendAnswer(answer: Answer) {
         answersChosen.append(answer)
     }
@@ -37,8 +42,29 @@ class QuizViewModel: ObservableObject {
         if questionIndex < questions.count - 1 {
             questionIndex += 1
         } else {
+            calculatePersonalityResults()
             isFinished = true
         }
-        print(questionIndex, isFinished, answersChosen)
+    }
+    
+    func calculatePersonalityResults() {
+        let frequencyOfAnswers = answersChosen.reduce(into: [:]) { (counts, answer) in
+            counts[answer.type, default: 0] += 1
+        }
+        
+        let frequentAnswersSorted = frequencyOfAnswers.sorted { (pair1, pair2) in
+            return pair1.value > pair2.value
+        }
+        
+        let mostCommonAnswer = frequentAnswersSorted.first!.key
+        
+        resultAnswer = "You are a \(mostCommonAnswer.rawValue)!"
+        resultDefinition = mostCommonAnswer.definition
+    }
+    
+    func reset() {
+        questionIndex = 0
+        answersChosen.removeAll()
+        isFinished = false
     }
 }

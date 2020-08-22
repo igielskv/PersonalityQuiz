@@ -9,25 +9,32 @@
 import SwiftUI
 
 struct ResultsView: View {
+    var quiz: QuizViewModel
+    
     var body: some View {
         VStack {
-            Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
+            Text(quiz.resultAnswer)
                 .font(.system(size: 50.0))
-            Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
+            Text(quiz.resultDefinition)
                 .font(.system(size: 17.0))
         }
         .padding(.horizontal, 20.0)
         .navigationBarTitle("Results", displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(trailing: Button(action: doneButtonTapped) {
             Text("Done")
         })
+    }
+    
+    func doneButtonTapped() {
+        quiz.hasStarted = false
     }
 }
 
 struct ResultsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ResultsView()
+            ResultsView(quiz: QuizViewModel(questions: questionsData))
         }
     }
 }

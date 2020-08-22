@@ -10,7 +10,7 @@ import SwiftUI
 
 struct QuestionsView: View {
     
-    @ObservedObject var quiz: QuizViewModel = QuizViewModel(questions: questionsData)
+    @ObservedObject var quiz: QuizViewModel
     
     var body: some View {
         NavigationView {
@@ -36,7 +36,7 @@ struct QuestionsView: View {
                 
                 // Todo: Implemet ProgressView using UIKit, it seems to be missing in SwiftUI
                 
-                NavigationLink(destination: ResultsView(), isActive: $quiz.isFinished) {
+                NavigationLink(destination: ResultsView(quiz: quiz), isActive: $quiz.isFinished) {
                     EmptyView()
                 }
             }
@@ -48,7 +48,7 @@ struct QuestionsView: View {
 
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionsView()
+        QuestionsView(quiz: QuizViewModel(questions: questionsData))
     }
 }
 

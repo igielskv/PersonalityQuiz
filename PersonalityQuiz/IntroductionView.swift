@@ -10,7 +10,7 @@ import SwiftUI
 
 struct IntroductionView: View {
     
-    @State private var quizHasStarted: Bool = false
+    @ObservedObject var quiz: QuizViewModel = QuizViewModel(questions: questionsData)
     
     var body: some View {
         VStack {
@@ -27,12 +27,12 @@ struct IntroductionView: View {
             Text("Which Animal Are You?")
                 .font(.custom("Georgia", size: 30.0))
             
-            Button(action: { self.quizHasStarted = true }) {
+            Button(action: { self.quiz.hasStarted = true }) {
                 Text("Begin Personality Quiz")
                     .font(.system(size: 15.0))
             }
-            .sheet(isPresented: $quizHasStarted) {
-                QuestionsView()
+            .sheet(isPresented: $quiz.hasStarted, onDismiss: quiz.reset) {
+                QuestionsView(quiz: self.quiz)
             }
             
             Spacer()
