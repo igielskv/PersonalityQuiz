@@ -29,7 +29,7 @@ struct QuestionsView: View {
                 }
                 
                 if quiz.currentQuestion.type == .ranged {
-                    RangedAnswerStack(answers: quiz.currentAnswers)
+                    RangedAnswerStack(quiz: quiz)
                 }
                 
                 Spacer()
@@ -70,12 +70,12 @@ struct SingleAnswerStack: View {
 struct MultipleAnswerStack: View {
     var quiz: QuizViewModel
     
-    @State var toggleStates: [Bool] = Array(repeating: false, count: 4)
+    @State var multiSwitch: [Bool] = Array(repeating: false, count: 4)
     
     var body: some View {
         VStack(spacing: 20.0) {
             ForEach(0 ..< quiz.currentAnswers.count) { index in
-                Toggle(isOn: self.$toggleStates[index]) {
+                Toggle(isOn: self.$multiSwitch[index]) {
                     Text(self.quiz.currentAnswers[index].text)
                 }
             }
@@ -88,7 +88,7 @@ struct MultipleAnswerStack: View {
     
     func multipleAnswerButtonPressed() {
         for index in 0 ..< quiz.currentAnswers.count {
-            if toggleStates[index] {
+            if multiSwitch[index] {
                 quiz.answersChosen.append(quiz.currentAnswers[index])
             }
         }
@@ -96,20 +96,25 @@ struct MultipleAnswerStack: View {
 }
 
 struct RangedAnswerStack: View {
+    var quiz: QuizViewModel
     
-    var answers: [Answer]
+    @State var rangedSlider: Float
     
     var body: some View {
         VStack(spacing: 20.0) {
-            Slider(value: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(10)/*@END_MENU_TOKEN@*/)
+            Slider(value: $rangedSlider)
             HStack {
-                Text(answers.first!.text)
+                Text(quiz.currentAnswers.first!.text)
                 Spacer()
-                Text(answers.last!.text)
+                Text(quiz.currentAnswers.last!.text)
             }
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                 Text("Submit Answer")
             }
         }
+    }
+    
+    func rangedAnswerButtonPressed() {
+        
     }
 }
