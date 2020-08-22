@@ -11,7 +11,7 @@ import Foundation
 class QuizViewModel: ObservableObject {
     var questions: [Question]
     
-    init(questions: [Question] = questionsData) {
+    init(questions: [Question] = []) {
         self.questions = questions
     }
     
@@ -25,5 +25,13 @@ class QuizViewModel: ObservableObject {
     
     var currentAnswers: [Answer] {
         currentQuestion.answers
+    }
+    
+    func appendAnswer(answer: Answer) {
+        answersChosen.append(answer)
+    }
+    
+    func nextQuestion() {
+        
     }
 }

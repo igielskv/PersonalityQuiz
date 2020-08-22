@@ -10,7 +10,9 @@ import SwiftUI
 
 struct QuestionsView: View {
     
-    @ObservedObject var quiz: QuizViewModel
+    @ObservedObject var quiz: QuizViewModel = QuizViewModel(questions: questionsData)
+    
+    @State var toggleStates: [Bool] = Array(repeating: false, count: 4)
     
     var body: some View {
         NavigationView {
@@ -21,11 +23,11 @@ struct QuestionsView: View {
                 Spacer()
                 
                 if quiz.currentQuestion.type == .single {
-                    SingleAnswerStack(answers: quiz.currentAnswers)
+                    SingleAnswerStack(quiz: quiz)
                 }
                 
                 if quiz.currentQuestion.type == .multiple {
-                    MultipleAnswerStack(answers: quiz.currentAnswers)
+                    multipleAnswerStack(answers: quiz.currentAnswers)
                 }
                 
                 if quiz.currentQuestion.type == .ranged {
@@ -40,45 +42,56 @@ struct QuestionsView: View {
             .navigationBarTitle("Question #\(quiz.questionIndex + 1)", displayMode: .inline)
         }
     }
+    
+    
+    
+    
+    
+    func multipleAnswerStack(answers: [Answer]) -> some View {
+        VStack(spacing: 20.0) {
+            ForEach(0 ..< answers.count) { index in
+                Toggle(isOn: self.$toggleStates[index]) {
+                    Text(answers[index].text)
+                }
+            }
+            
+            Button(action: { self.multipleAnswerButtonPressed(answers: answers)}) {
+                Text("Submit Answer")
+            }
+        }
+    }
+    
+    func multipleAnswerButtonPressed(answers: [Answer]) {
+        for index in 0 ..< answers.count {
+            if toggleStates[index] {
+                quiz.answersChosen.append(answers[index])
+            }
+        }
+    }
 }
 
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionsView(quiz: QuizViewModel())
+        QuestionsView()
     }
 }
 
 struct SingleAnswerStack: View {
-    
-    var answers: [Answer]
+    var quiz: QuizViewModel
     
     var body: some View {
         VStack(spacing: 20.0) {
-            ForEach(answers, id: \.self) { answer in
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+            ForEach(quiz.currentAnswers, id: \.self) { answer in
+                Button(action: { self.singleAnswerButtonPressed(answer: answer) }) {
                     Text(answer.text)
                 }
             }
         }
     }
-}
-
-struct MultipleAnswerStack: View {
     
-    var answers: [Answer]
-    
-    var body: some View {
-        VStack(spacing: 20.0) {
-            ForEach(answers, id: \.self) { answer in
-                Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
-                    Text(answer.text)
-                }
-            }
-            
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                Text("Submit Answer")
-            }
-        }
+    func singleAnswerButtonPressed(answer: Answer) {
+        quiz.appendAnswer(answer: answer)
+        quiz.nextQuestion()
     }
 }
 

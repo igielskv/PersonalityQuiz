@@ -32,7 +32,7 @@ struct IntroductionView: View {
                     .font(.system(size: 15.0))
             }
             .sheet(isPresented: $quizHasStarted) {
-                QuestionsView(quiz: QuizViewModel())
+                QuestionsView()
             }
             
             Spacer()
