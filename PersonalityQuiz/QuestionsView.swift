@@ -80,7 +80,7 @@ struct MultipleAnswerStack: View {
                 }
             }
             
-            Button(action: { self.multipleAnswerButtonPressed()}) {
+            Button(action: multipleAnswerButtonPressed) {
                 Text("Submit Answer")
             }
         }
@@ -92,29 +92,34 @@ struct MultipleAnswerStack: View {
                 quiz.answersChosen.append(quiz.currentAnswers[index])
             }
         }
+        quiz.nextQuestion()
     }
 }
 
 struct RangedAnswerStack: View {
     var quiz: QuizViewModel
     
-    @State var rangedSlider: Float
+    @State var rangedSlider: Float = 0.5
     
     var body: some View {
         VStack(spacing: 20.0) {
             Slider(value: $rangedSlider)
+            
             HStack {
                 Text(quiz.currentAnswers.first!.text)
                 Spacer()
                 Text(quiz.currentAnswers.last!.text)
             }
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+            
+            Button(action: rangedAnswerButtonPressed) {
                 Text("Submit Answer")
             }
         }
     }
     
     func rangedAnswerButtonPressed() {
-        
+        let index = Int(round(rangedSlider * Float(quiz.currentAnswers.count - 1)))
+        quiz.answersChosen.append(quiz.currentAnswers[index])
+        quiz.nextQuestion()
     }
 }
